@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Lista de Funcionários</h1>
+    <div class="list-group">
+        {% for employee in employees %}
+        <a href="{% url 'management_detail' employee.pk %}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ employee.full_name }}</h5>
+                <small>CPF: {{ employee.cpf }}</small>
+            </div>
+            <p class="mb-1">Horas no banco de horas: {{ employee.hours }}</p>
+            <div class="d-flex w-100 justify-content-between">
+                <small>Clique para mais informações</small>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

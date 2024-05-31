@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Detalhes do Funcionário</h1>
+    <div class="card">
+        <div class="card-header">
+            {{ employee.full_name }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Informações Pessoais</h5>
+            <p class="card-text"><strong>Nome Completo:</strong> {{ employee.full_name }}</p>
+            <p class="card-text"><strong>CPF:</strong> {{ employee.cpf }}</p>
+            <p class="card-text"><strong>Email:</strong> {{ employee.email }}</p>
+            <p class="card-text"><strong>Data de Criação do Registro:</strong> {{ employee.date_joined }}</p>
+            <p class="card-text"><strong>Horas no Banco de Horas:</strong> {{ employee.hours }}</p>
+            <a href="{% url 'management_list' %}" class="btn btn-primary">Voltar à lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
