@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from .forms import RegistryHoursForm
 from .models import RegistryHours
 
@@ -46,3 +47,14 @@ class HoursReportListView(LoginRequiredMixin, PermissionRequiredMixin, ListView)
         # Ajuste para obter apenas o usuário logado, não precisa filtrar EmployeeUser
         context['employee'] = self.request.user
         return context
+
+
+class RegistryHoursUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = RegistryHours
+    form_class = RegistryHoursForm
+    template_name = 'update_hours.html'
+    permission_required = 'hours.change_registryhours'
+    raise_exception = True
+
+    def get_success_url(self):
+        return reverse_lazy('management_detail', kwargs={'pk': self.object.pk})

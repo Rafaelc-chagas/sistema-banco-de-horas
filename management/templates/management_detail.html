@@ -14,7 +14,10 @@
             <p class="card-text"><strong>Email:</strong> {{ employee.email }}</p>
             <p class="card-text"><strong>Data de Criação do Registro:</strong> {{ employee.date_joined }}</p>
             <p class="card-text"><strong>Horas no Banco de Horas:</strong> {{ employee.hours }}</p>
-            <a href="{% url 'management_list' %}" class="btn btn-primary">Voltar à lista</a>
+            <div class="buttons-container">
+                <a href="{% url 'management_list' %}" class="btn btn-secondary">Voltar à lista</a>
+                <a href="{% url 'management_list_registry' pk=object.pk %}" class="btn btn-primary">Visualizar Registros</a>
+            </div>
         </div>
     </div>
 </div>
